@@ -67,7 +67,43 @@ one page's `<link rel="canonical">` afterwards: it should read
 
 Proxying through Cloudflare can be switched on afterwards if it is wanted. If it
 is, set SSL/TLS mode to **Full (strict)** — anything less puts an unencrypted hop
-between Cloudflare and GitHub.
+between Cloudflare and GitHub. Be aware that GitHub renews the certificate about
+every 90 days using the same challenge, and a re-enabled proxy can block the
+renewal. Leaving the records grey is the lower-maintenance choice.
+
+## Troubleshooting: "Enforce HTTPS" is greyed out
+
+Cause, in every case seen so far: the Cloudflare records are **proxied** (orange
+cloud). GitHub proves ownership by answering a challenge at
+`http://joshvanstone.com/.well-known/acme-challenge/…`. With the proxy on,
+Cloudflare answers that request instead of GitHub, GitHub never gets its
+certificate, and the checkbox stays disabled.
+
+Confirm it before changing anything. The domain's response headers name both
+ends:
+
+```sh
+curl -sS -o /dev/null -D - http://joshvanstone.com/ | grep -iE '^(server|cf-ray|x-github)'
+```
+
+`server: cloudflare` with a `cf-ray` header means the edge is answering.
+`x-github-request-id` alongside it means GitHub Pages is the origin behind it —
+that combination is the proxied state. Resolving the domain is the other tell:
+proxied records return Cloudflare addresses (`104.21.x.x`, `172.67.x.x`) rather
+than the GitHub Pages addresses listed above.
+
+The fix, in order:
+
+1. Cloudflare → DNS. Set each A, AAAA and the `www` CNAME to **DNS only**.
+2. GitHub → Settings → Pages. If it does not retry within a few minutes, clear
+   the custom domain, save, re-enter it, and save again — that forces a fresh
+   certificate request.
+3. Wait for "Certificate provisioned". Usually minutes, occasionally an hour.
+4. Tick **Enforce HTTPS**.
+
+The site is not down while this is unresolved: visitors still get HTTPS from
+Cloudflare's own edge certificate. What is unresolved is the hop between
+Cloudflare and GitHub, which is unencrypted if the SSL/TLS mode is "Flexible".
 
 ## If Cloudflare Pages is preferred instead
 
