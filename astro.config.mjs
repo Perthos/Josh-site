@@ -7,7 +7,15 @@ import { baseLinksPlugin } from './base-links-plugin.mjs';
 // The site is built for its canonical home. CI overrides both values so the
 // same commit can deploy to a *.github.io placeholder until DNS lands; see
 // DEPLOY.md.
-const site = process.env.SITE_URL || 'https://joshvanstone.com';
+//
+// Forced to https: `actions/configure-pages` reports an http:// origin for a
+// custom domain until "Enforce HTTPS" is ticked, and an http canonical, feed
+// link or card URL published in that window outlives the window — feed readers
+// keep the item link they first saw.
+const site = (process.env.SITE_URL || 'https://joshvanstone.com').replace(
+  /^http:\/\//,
+  'https://',
+);
 const base = process.env.BASE_PATH || '/';
 
 export default defineConfig({
