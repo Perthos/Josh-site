@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, href } from '../lib/site';
+---
+
+<Base
+  title="About"
+  description={`About ${SITE.name} and this site.`}
+  ogSlug="about"
+>
+  <div class="prose">
+    <h1>About</h1>
+    <p class="lede">
+      This is the canonical home for work published under my name. Everything
+      here is written to be checked.
+    </p>
+    <p>
+      Pieces live on <a href={href('/writing')}>Writing</a>. The rules they are
+      held to are on <a href={href('/standards')}>Standards</a>. Work on youth
+      philanthropy runs through{' '}
+      <a href="https://growyouthgiving.org">growyouthgiving.org</a>.
+    </p>
+    <p class="note">
+      This page is a placeholder while the site is stood up. The full about
+      copy lands with the content build.
+    </p>
+  </div>
+</Base>

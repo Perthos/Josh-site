@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import { href, formatDate } from '../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const pieces = await getCollection('writing', ({ data }) => !data.draft);
+  return pieces.map((piece) => ({
+    params: { id: piece.id },
+    props: { piece },
+  }));
+}) satisfies GetStaticPaths;
+
+const { piece } = Astro.props;
+const { Content } = await render(piece);
+---
+
+<Base
+  title={piece.data.title}
+  description={piece.data.description}
+  ogSlug={`writing-${piece.id}`}
+  ogType="article"
+  publishedAt={piece.data.date}
+>
+  <article class="prose">
+    {piece.data.series && <p class="series-tag">{piece.data.series}</p>}
+    <h1>{piece.data.title}</h1>
+    <p class="meta">
+      <time datetime={piece.data.date.toISOString()}>
+        {formatDate(piece.data.date)}
+      </time>
+      {
+        piece.data.updated && (
+          <>
+            {' · updated '}
+            <time datetime={piece.data.updated.toISOString()}>
+              {formatDate(piece.data.updated)}
+            </time>
+          </>
+        )
+      }
+    </p>
+    <Content />
+  </article>
+
+  <hr />
+  <p class="meta"><a href={href('/writing')}>All writing</a></p>
+</Base>

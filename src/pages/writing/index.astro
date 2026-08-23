@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { href, formatDate } from '../../lib/site';
+
+const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Base
+  title="Writing"
+  description="Every piece published here, newest first."
+  ogSlug="writing"
+>
+  <h1>Writing</h1>
+  <p class="lede">Every piece published here, newest first.</p>
+
+  {
+    pieces.length === 0 ? (
+      <p>Nothing published yet.</p>
+    ) : (
+      <ul class="piece-list">
+        {pieces.map((piece) => (
+          <li>
+            {piece.data.series && <p class="series-tag">{piece.data.series}</p>}
+            <h2>
+              <a href={href(`/writing/${piece.id}`)}>{piece.data.title}</a>
+            </h2>
+            <p class="meta">
+              <time datetime={piece.data.date.toISOString()}>
+                {formatDate(piece.data.date)}
+              </time>
+            </p>
+            <p>{piece.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <p style="margin-top:2.5rem"><a href={href('/rss.xml')}>Feed</a></p>
+</Base>
