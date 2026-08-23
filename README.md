@@ -16,7 +16,7 @@ npm run preview  # serve the built output
 npm run check    # type-check .astro and .ts files
 ```
 
-Node 22 or newer.
+Node 22.12 or newer — Astro 7 refuses to run on anything older.
 
 ## Publishing a piece
 

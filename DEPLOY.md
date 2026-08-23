@@ -75,7 +75,7 @@ Cloudflare can host this directly, which keeps DNS and hosting in one account an
 removes the DNS-only caveat above. It is a dashboard change, not a code change:
 
 1. Cloudflare dashboard → Workers & Pages → Create → Pages → connect this repo.
-2. Build command `npm run build`, output directory `dist`, Node 22.
+2. Build command `npm run build`, output directory `dist`, Node 22.12 or newer.
 3. Set `SITE_URL=https://joshvanstone.com` as a build environment variable.
 4. Add `joshvanstone.com` as a custom domain in the Pages project.
 5. Disable `.github/workflows/deploy.yml` so two hosts are not both publishing.
