@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/site';
+---
+
+<Base
+  title="Field Guide"
+  description="A standing, practical guide — maintained rather than published once."
+  ogSlug="field-guide"
+>
+  <div class="prose">
+    <h1>Field Guide</h1>
+    <p class="lede">
+      A standing page rather than a dated piece: practical guidance kept current
+      as the work develops.
+    </p>
+    <p>
+      Unlike <a href={href('/writing')}>the writing</a>, this page is revised in
+      place. It carries the same{' '}
+      <a href={href('/standards')}>standards</a>.
+    </p>
+    <p class="note">
+      Placeholder while the site is stood up. The guide's first contents land
+      with the content build.
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/site';
+---
+
+<Base
+  title="Page not found"
+  description="That page does not exist."
+  ogSlug="home"
+>
+  <div class="prose">
+    <h1>Page not found</h1>
+    <p>
+      Nothing lives at that address. Try{' '}
+      <a href={href('/writing')}>the writing index</a> or the{' '}
+      <a href={href('/')}>front page</a>.
+    </p>
+  </div>
+</Base>

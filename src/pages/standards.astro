@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/site';
+---
+
+<Base
+  title="Standards"
+  description="The rules every piece on this site is held to, and how to check them."
+  ogSlug="standards"
+>
+  <div class="prose">
+    <h1>Standards</h1>
+    <p class="lede">
+      The rules every piece here is held to. They are published so a reader can
+      hold the writing to them.
+    </p>
+
+    <h2>Every checkable claim carries a live link</h2>
+    <p>
+      A number or an attributed statement travels with a named source and a
+      working link to it, or it does not run. Links are rendered plainly in the
+      text, marked where they leave the site, so a claim can be followed without
+      hunting for a footnote.
+    </p>
+
+    <h2>Sources are named, not gestured at</h2>
+    <p>
+      "Research shows" is not a source. The organisation, the document and the
+      date belong in the text.
+    </p>
+
+    <h2>Corrections stay visible</h2>
+    <p>
+      When a piece changes after publication, the change is dated on the piece
+      rather than made quietly.
+    </p>
+
+    <p class="note">
+      This page is a first cut, published so the standard is on the record from
+      day one. It expands with the content build; the rules above are already
+      in force. Pieces held to them are on{' '}
+      <a href={href('/writing')}>Writing</a>.
+    </p>
+  </div>
+</Base>

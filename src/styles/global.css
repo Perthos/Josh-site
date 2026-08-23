@@ -1,0 +1,304 @@
+/* One stylesheet, no framework, no client-side JS. Light and dark come from the
+   reader's OS setting via prefers-color-scheme — there is no theme toggle to
+   hydrate. */
+
+:root {
+  color-scheme: light dark;
+
+  --paper: #fbfaf7;
+  --ink: #16181d;
+  --muted: #5b6069;
+  --rule: #e2ded5;
+  --accent: #a83c1d;
+  --accent-hover: #7d2c14;
+  --focus: #1f5fd0;
+
+  --measure: 34rem;
+  --font-body: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+  --font-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14161a;
+    --ink: #e8e6e1;
+    --muted: #9aa0a9;
+    --rule: #2c3037;
+    --accent: #ef8a63;
+    --accent-hover: #f7b295;
+    --focus: #7fa8f5;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  text-underline-offset: 0.16em;
+}
+
+.shell {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--accent);
+}
+
+.skip-link:focus {
+  left: 0;
+  z-index: 10;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Links are the product here: always underlined, never colour-only. */
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration-thickness: 0.16em;
+}
+
+/* Header and footer ---------------------------------------------------- */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem 0;
+  font-family: var(--font-ui);
+}
+
+.site-header .shell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.wordmark {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.wordmark:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+main {
+  padding: 3rem 0 4rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 0 3rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.site-footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* Typography ------------------------------------------------------------ */
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-ui);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0 0.75rem;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 1.3rem + 2.4vw, 2.6rem);
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+p,
+ul,
+ol,
+blockquote,
+pre,
+table {
+  max-width: var(--measure);
+}
+
+.lede {
+  font-size: 1.2rem;
+  color: var(--muted);
+}
+
+.meta {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0;
+}
+
+/* Piece body ------------------------------------------------------------ */
+
+/* Outbound citations are marked so a reader can see, without hovering, that a
+   claim leaves the site to something checkable. */
+.prose a[href^='http']::after {
+  content: ' ↗';
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
+.prose li + li {
+  margin-top: 0.35rem;
+}
+
+/* Lists ----------------------------------------------------------------- */
+
+.piece-list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  max-width: var(--measure);
+}
+
+.piece-list li + li {
+  margin-top: 2rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 2rem;
+}
+
+.piece-list h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.piece-list h2 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.piece-list h2 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.piece-list p {
+  margin: 0.5rem 0 0;
+}
+
+.series-tag {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.note {
+  max-width: var(--measure);
+  margin-top: 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--rule);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--muted);
+}

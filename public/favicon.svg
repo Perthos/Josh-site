@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JV">
+  <style>
+    .bg { fill: #fbfaf7; }
+    .rule { fill: #c9502f; }
+    .mark { fill: #16181d; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #14161a; }
+      .mark { fill: #e8e6e1; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="8" />
+  <rect class="rule" width="64" height="6" rx="3" />
+  <text
+    class="mark"
+    x="32"
+    y="46"
+    text-anchor="middle"
+    font-family="ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+    font-size="34"
+    font-weight="600"
+    letter-spacing="-1"
+  >JV</text>
+</svg>
