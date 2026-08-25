@@ -23,27 +23,34 @@ const { Content } = await render(piece);
   ogType="article"
   publishedAt={piece.data.date}
 >
-  <article class="prose">
-    {piece.data.series && <p class="series-tag">{piece.data.series}</p>}
-    <h1>{piece.data.title}</h1>
-    <p class="meta">
-      <time datetime={piece.data.date.toISOString()}>
-        {formatDate(piece.data.date)}
-      </time>
-      {
-        piece.data.updated && (
-          <>
-            {' · updated '}
-            <time datetime={piece.data.updated.toISOString()}>
-              {formatDate(piece.data.updated)}
-            </time>
-          </>
-        )
-      }
-    </p>
-    <Content />
+  <article>
+    <header class="page-head">
+      {piece.data.series && <span class="eyebrow">{piece.data.series}</span>}
+      <h1>{piece.data.title}</h1>
+      <p class="meta">
+        <time datetime={piece.data.date.toISOString()}>
+          {formatDate(piece.data.date)}
+        </time>
+        {
+          piece.data.updated && (
+            <>
+              {' · updated '}
+              <time datetime={piece.data.updated.toISOString()}>
+                {formatDate(piece.data.updated)}
+              </time>
+            </>
+          )
+        }
+      </p>
+      <hr class="page-head__rule" />
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
   </article>
 
-  <hr />
-  <p class="meta"><a href={href('/writing')}>All writing</a></p>
+  <div class="tailpiece">
+    <p><a href={href('/writing')}>All writing</a></p>
+  </div>
 </Base>

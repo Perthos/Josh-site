@@ -13,31 +13,38 @@ const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
   description="Every piece published here, newest first."
   ogSlug="writing"
 >
-  <h1>Writing</h1>
-  <p class="lede">Every piece published here, newest first.</p>
+  <div class="page-head">
+    <h1>Writing</h1>
+    <p class="lede">Every piece published here, newest first.</p>
+    <hr class="page-head__rule" />
+  </div>
 
   {
     pieces.length === 0 ? (
       <p>Nothing published yet.</p>
     ) : (
-      <ul class="piece-list">
+      <ul class="entries">
         {pieces.map((piece) => (
-          <li>
-            {piece.data.series && <p class="series-tag">{piece.data.series}</p>}
-            <h2>
+          <li class="entry">
+            {piece.data.series && (
+              <span class="eyebrow">{piece.data.series}</span>
+            )}
+            <h2 class="entry__title">
               <a href={href(`/writing/${piece.id}`)}>{piece.data.title}</a>
             </h2>
-            <p class="meta">
+            <span class="meta entry__date">
               <time datetime={piece.data.date.toISOString()}>
                 {formatDate(piece.data.date)}
               </time>
-            </p>
-            <p>{piece.data.description}</p>
+            </span>
+            <p class="entry__summary">{piece.data.description}</p>
           </li>
         ))}
       </ul>
     )
   }
 
-  <p style="margin-top:2.5rem"><a href={href('/rss.xml')}>Feed</a></p>
+  <div class="tailpiece">
+    <p><a href={href('/rss.xml')}>Feed</a></p>
+  </div>
 </Base>

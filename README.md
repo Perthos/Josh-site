@@ -1,6 +1,6 @@
 # joshvanstone.com
 
-The canonical home for work published under Josh Vanstone's name. A static site:
+The canonical home for work published under Josh Van Stone's name. A static site:
 every page is HTML generated at build time, and no page ships client-side
 JavaScript.
 
@@ -59,7 +59,21 @@ These are requirements, not preferences:
 | `src/lib/site.ts`                | Site metadata, nav, footer links, URL helper            |
 | `src/lib/og.ts`, `src/lib/cards.ts` | Social-card rendering and the standing pages' cards  |
 | `src/styles/global.css`          | The whole stylesheet                                    |
-| `assets/fonts/`                  | Inter, used at build time for cards only ([OFL](assets/fonts/Inter-LICENSE.txt)) |
+| `public/fonts/`                  | The two served faces, subset ([OFL](assets/fonts/Inter-LICENSE.txt)) |
+| `assets/fonts/`                  | Static cuts used at build time for cards only ([OFL](assets/fonts/Inter-LICENSE.txt), [OFL](assets/fonts/Newsreader-LICENSE.txt)) |
+| `tools/build-fonts.py`           | Fetches and subsets both families; run it only when a face changes |
+| `tools/build-favicon.py`         | Draws `public/favicon.svg` from the wordmark face       |
+
+## Typography
+
+Newsreader sets the prose and the headings; Inter sets navigation, datelines and
+labels. Both are self-hosted — the build makes **zero requests to third-party
+hosts**, and a face that cannot be self-hosted is not used. Both are latin
+subsets, variable, and total about 102 KB served against a 150 KB budget.
+
+Regenerate them with `python3 tools/build-fonts.py` (needs `fonttools` and
+`brotli`); the outputs are committed, so a normal build never touches the
+network. The same script writes the static cuts the social cards render from.
 
 ## Things worth knowing
 

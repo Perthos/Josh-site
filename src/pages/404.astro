@@ -8,8 +8,12 @@ import { href } from '../lib/site';
   description="That page does not exist."
   ogSlug="home"
 >
-  <div class="prose">
+  <div class="page-head">
     <h1>Page not found</h1>
+    <hr class="page-head__rule" />
+  </div>
+
+  <div class="prose">
     <p>
       Nothing lives at that address. Try{' '}
       <a href={href('/writing')}>the writing index</a> or the{' '}
