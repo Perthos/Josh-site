@@ -1,7 +1,7 @@
 ---
 title: 'Colophon: how this site is built'
 description: >-
-  What this site runs on, and the deliberate absences — no analytics, no
+  What this site runs on, and the deliberate absences: no analytics, no
   comments, no scripts.
 date: 2026-08-23
 series: Notes
@@ -27,6 +27,10 @@ so there is no theme switch to load and nothing stored about the visit.
   trying to capture the reader.
 - **No stock imagery.** Social cards are plain type, generated at build time
   from the piece's own title.
+- **No third-party requests, at all.** The two typefaces are subset and served
+  from this domain, so opening any page here contacts one host: this one. Check
+  it in your browser's network panel rather than taking my word for it. That is
+  the point of the list.
 
 ## How to follow it
 
@@ -38,4 +42,4 @@ reader, and it requires no address and no account.
 
 Every link is underlined, and links that leave the site are marked. On a site
 whose [standard](/standards) is that checkable claims carry their sources, the
-link is not decoration — it is the part a reader is meant to use.
+link is not decoration. It is the part a reader is meant to use.

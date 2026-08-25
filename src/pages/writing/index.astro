@@ -3,6 +3,21 @@ import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { href, formatDate } from '../../lib/site';
 
+/*
+ * SOURCE TRACE (Site build 2, Perthos/Research#138)
+ *
+ * The question: `notes/piece-sequencing.md`, "The series question", in the form
+ * ruled on 2026-08-22 (the "dramatically" cut). A later amendment proposing to
+ * open the question further is on the record and unsigned, so this form stands.
+ *
+ * The arc: `notes/piece-sequencing.md`, "The committed three", one sentence per
+ * piece, ordered causally rather than by evidence strength. Three is the
+ * commitment; the list is deliberately not extended ahead of shipping, which is
+ * the recorded failure mode of this effort.
+ *
+ * Voice: zero em-dashes.
+ */
+
 const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
@@ -10,37 +25,74 @@ const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
 
 <Base
   title="Writing"
-  description="Every piece published here, newest first."
+  description="A series on one question: when producing code gets cheaper but judgment, validation, and coordination don't, what happens to the engineering organization?"
   ogSlug="writing"
 >
   <div class="page-head">
     <h1>Writing</h1>
-    <p class="lede">Every piece published here, newest first.</p>
+    <p class="lede">
+      A series on one question: when producing code gets cheaper but judgment,
+      validation, and coordination don't, what happens to the engineering
+      organization?
+    </p>
     <hr class="page-head__rule" />
+  </div>
+
+  <div class="prose">
+    <p>
+      The question is stated in public because it is the scope. Three pieces
+      are committed, ordered so that each is the prerequisite for the next
+      rather than by how strong the evidence is.
+    </p>
+    <ol>
+      <li>
+        <strong>How AI systems fail, and what that changes about design.</strong>{' '}
+        How systems fail is what you have to design for, and the old patterns
+        mostly hold in principle while looking different in practice.
+      </li>
+      <li>
+        <strong>Where judgment has to sit, given how they fail.</strong> Who
+        owns the decisions that failure modes push onto people, and what it
+        costs to put judgment there.
+      </li>
+      <li>
+        <strong>How judgment is acquired when the mechanical layer is
+        absorbed.</strong> Where the next generation gets the repetitions if
+        implementation stops providing them.
+      </li>
+    </ol>
+    <p>
+      Every piece is held to <a href={href('/standards')}>the standards</a>.
+      Where the evidence runs out and a decision still has to be made, the
+      piece says so and makes the call anyway, labelled as a call.
+    </p>
   </div>
 
   {
     pieces.length === 0 ? (
       <p>Nothing published yet.</p>
     ) : (
-      <ul class="entries">
-        {pieces.map((piece) => (
-          <li class="entry">
-            {piece.data.series && (
-              <span class="eyebrow">{piece.data.series}</span>
-            )}
-            <h2 class="entry__title">
-              <a href={href(`/writing/${piece.id}`)}>{piece.data.title}</a>
-            </h2>
-            <span class="meta entry__date">
-              <time datetime={piece.data.date.toISOString()}>
-                {formatDate(piece.data.date)}
-              </time>
-            </span>
-            <p class="entry__summary">{piece.data.description}</p>
-          </li>
-        ))}
-      </ul>
+      <>
+        <h2 class="section-head">Published</h2>
+        <ul class="entries">
+          {pieces.map((piece) => (
+            <li class="entry">
+              {piece.data.series && (
+                <span class="eyebrow">{piece.data.series}</span>
+              )}
+              <h3 class="entry__title">
+                <a href={href(`/writing/${piece.id}`)}>{piece.data.title}</a>
+              </h3>
+              <span class="meta entry__date">
+                <time datetime={piece.data.date.toISOString()}>
+                  {formatDate(piece.data.date)}
+                </time>
+              </span>
+              <p class="entry__summary">{piece.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </>
     )
   }
 

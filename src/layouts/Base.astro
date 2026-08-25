@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE, NAV, FOOTER_LINKS, href } from '../lib/site';
+import { SITE, NAV, FOOTER_LINKS, FOOTER_NOTE, href } from '../lib/site';
 
 interface Props {
   title: string;
@@ -156,6 +156,7 @@ const fontFaces = `
             ))
           }
         </ul>
+        <p class="footer-note">{FOOTER_NOTE}</p>
         <p>© {new Date().getFullYear()} {SITE.name}</p>
       </div>
     </footer>
