@@ -8,19 +8,26 @@ import { SITE, href } from '../lib/site';
   description={`About ${SITE.name} and this site.`}
   ogSlug="about"
 >
-  <div class="prose">
+  <div class="page-head">
     <h1>About</h1>
     <p class="lede">
       This is the canonical home for work published under my name. Everything
       here is written to be checked.
     </p>
+    <hr class="page-head__rule" />
+  </div>
+
+  <div class="prose">
     <p>
       Pieces live on <a href={href('/writing')}>Writing</a>. The rules they are
       held to are on <a href={href('/standards')}>Standards</a>. Work on youth
       philanthropy runs through{' '}
       <a href="https://growyouthgiving.org">growyouthgiving.org</a>.
     </p>
-    <p class="note">
+  </div>
+
+  <div class="dateline">
+    <p>
       This page is a placeholder while the site is stood up. The full about
       copy lands with the content build.
     </p>

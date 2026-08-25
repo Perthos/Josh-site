@@ -21,6 +21,35 @@ const canonical = new URL(
 const ogImage = new URL(href(`/og/${ogSlug}.png`), Astro.site);
 const pageTitle = title === SITE.title ? title : `${title} — ${SITE.name}`;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+// Self-hosted, latin-subset, variable. Declared here rather than in the
+// stylesheet so the URLs go through href() and survive a sub-path deploy.
+// Built by tools/build-fonts.py; the whole served payload is about 102 KB.
+const serif = href('/fonts/newsreader-latin.woff2');
+const serifItalic = href('/fonts/newsreader-latin-italic.woff2');
+const sans = href('/fonts/inter-latin.woff2');
+const fontFaces = `
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('${serif}') format('woff2');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('${serifItalic}') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('${sans}') format('woff2');
+}`;
 ---
 
 <!doctype html>
@@ -32,6 +61,21 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={href('/favicon.svg')} />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={serif}
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={sans}
+      crossorigin="anonymous"
+    />
+    <style is:inline set:html={fontFaces}></style>
     <link
       rel="alternate"
       type="application/rss+xml"

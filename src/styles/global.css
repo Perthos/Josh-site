@@ -1,34 +1,56 @@
 /* One stylesheet, no framework, no client-side JS. Light and dark come from the
    reader's OS setting via prefers-color-scheme — there is no theme toggle to
-   hydrate. */
+   hydrate.
+
+   The faces are declared in Base.astro rather than here, so their URLs go
+   through href() and survive a sub-path deploy. */
 
 :root {
   color-scheme: light dark;
 
-  --paper: #fbfaf7;
-  --ink: #16181d;
-  --muted: #5b6069;
-  --rule: #e2ded5;
-  --accent: #a83c1d;
-  --accent-hover: #7d2c14;
+  --paper: #faf8f3;
+  --surface: #f3f0e8;
+  --ink: #1a1c1f;
+  --muted: #5f6570;
+  --rule: #e6e1d7;
+  --rule-strong: #d6cfc0;
+  --accent: #9e3412;
+  --accent-hover: #7a2a0e;
   --focus: #1f5fd0;
 
-  --measure: 34rem;
-  --font-body: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
-  --font-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Newsreader', ui-serif, Georgia, Cambria, 'Times New Roman',
+    serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
     monospace;
+
+  /* The text column. Everything — masthead, prose, footer — aligns to it, so
+     the page reads as one measure rather than a box inside a wider box. */
+  --shell: 39.5rem;
+  --gutter: 1.5rem;
+
+  /* Type scale, roughly a major third, held down at the small end so the
+     interface never competes with the prose. */
+  --step--1: 0.875rem;
+  --step-0: 1.1875rem;
+  --step-1: 1.3125rem;
+  --step-2: 1.5rem;
+  --step-3: 1.875rem;
+  --display: clamp(2.25rem, 1.6rem + 2.6vw, 3.125rem);
+  --display-sm: clamp(1.95rem, 1.5rem + 1.9vw, 2.625rem);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14161a;
-    --ink: #e8e6e1;
-    --muted: #9aa0a9;
-    --rule: #2c3037;
-    --accent: #ef8a63;
-    --accent-hover: #f7b295;
+    --paper: #15171b;
+    --surface: #1b1e23;
+    --ink: #e9e7e2;
+    --muted: #a0a6b0;
+    --rule: #2b2f36;
+    --rule-strong: #3a3f48;
+    --accent: #f0906a;
+    --accent-hover: #f8b494;
     --focus: #7fa8f5;
   }
 }
@@ -45,18 +67,22 @@ html {
 
 body {
   margin: 0;
+  /* The accent hairline is the whole of the site's chrome: it appears here, on
+     the social cards and in the favicon, and nowhere else. */
+  border-top: 3px solid var(--accent);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  text-underline-offset: 0.16em;
+  font-size: var(--step-0);
+  font-optical-sizing: auto;
+  line-height: 1.7;
+  text-underline-offset: 0.14em;
 }
 
 .shell {
-  max-width: 46rem;
+  max-width: var(--shell);
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 var(--gutter);
 }
 
 .skip-link {
@@ -83,146 +109,205 @@ body {
 a {
   color: var(--accent);
   text-decoration: underline;
-  text-decoration-thickness: 0.08em;
+  text-decoration-thickness: 0.06em;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 a:hover {
   color: var(--accent-hover);
-  text-decoration-thickness: 0.16em;
+  text-decoration-color: currentColor;
 }
 
-/* Header and footer ---------------------------------------------------- */
+/* Masthead and footer ---------------------------------------------------- */
 
 .site-header {
-  border-bottom: 1px solid var(--rule);
-  padding: 1.5rem 0;
+  padding: 2rem 0 1.25rem;
   font-family: var(--font-ui);
 }
 
 .site-header .shell {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
+  gap: 0.85rem 1.75rem;
   align-items: baseline;
   justify-content: space-between;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--rule);
 }
 
 .wordmark {
+  font-family: var(--font-body);
+  font-size: 1.4rem;
   font-weight: 600;
-  font-size: 1.0625rem;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.012em;
   color: var(--ink);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .wordmark:hover {
   color: var(--ink);
   text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-decoration-color: var(--accent);
 }
 
 .site-nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1.35rem;
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.95rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.01em;
 }
 
 .site-nav a {
   color: var(--muted);
   text-decoration: none;
+  padding-bottom: 0.15rem;
 }
 
-.site-nav a:hover,
-.site-nav a[aria-current='page'] {
+.site-nav a:hover {
   color: var(--ink);
   text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+}
+
+.site-nav a[aria-current='page'] {
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
 }
 
 main {
-  padding: 3rem 0 4rem;
+  padding: 3.5rem 0 5rem;
 }
 
 .site-footer {
-  border-top: 1px solid var(--rule);
-  padding: 2rem 0 3rem;
+  padding: 2.25rem 0 3.5rem;
   font-family: var(--font-ui);
-  font-size: 0.9rem;
+  font-size: var(--step--1);
   color: var(--muted);
+}
+
+.site-footer .shell {
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
 }
 
 .site-footer ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  margin: 0 0 0.75rem;
+  gap: 1.35rem;
+  margin: 0 0 1rem;
   padding: 0;
   list-style: none;
 }
 
-/* Typography ------------------------------------------------------------ */
+.site-footer p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Headings and prose ----------------------------------------------------- */
 
 h1,
 h2,
 h3 {
-  font-family: var(--font-ui);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin: 2.5rem 0 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 2.75rem 0 0.85rem;
 }
 
 h1 {
-  font-size: clamp(1.9rem, 1.3rem + 2.4vw, 2.6rem);
+  font-size: var(--display-sm);
   margin-top: 0;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: var(--step-2);
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: var(--step-1);
+  letter-spacing: -0.005em;
 }
 
-p,
-ul,
-ol,
-blockquote,
-pre,
-table {
-  max-width: var(--measure);
+p {
+  margin: 0 0 1.25rem;
+  text-wrap: pretty;
+}
+
+/* The kicker above a title: section, series or standing label. */
+.eyebrow {
+  display: block;
+  margin: 0 0 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .lede {
-  font-size: 1.2rem;
-  color: var(--muted);
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
 }
 
 .meta {
   font-family: var(--font-ui);
-  font-size: 0.9rem;
+  font-size: var(--step--1);
   color: var(--muted);
 }
 
+/* Page opener: eyebrow, title, lede, then air before the body. */
+.page-head {
+  margin-bottom: 2.25rem;
+}
+
+.page-head .lede {
+  margin-bottom: 0;
+}
+
+.page-head--display h1 {
+  font-size: var(--display);
+}
+
+.page-head__rule {
+  width: 3.5rem;
+  height: 2px;
+  margin: 1.5rem 0 0;
+  background: var(--accent);
+  border: 0;
+}
+
 blockquote {
-  margin: 1.5rem 0;
-  padding-left: 1.25rem;
-  border-left: 3px solid var(--rule);
+  margin: 1.75rem 0;
+  padding-left: 1.35rem;
+  border-left: 2px solid var(--rule-strong);
+  font-style: italic;
   color: var(--muted);
 }
 
 code {
   font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 pre {
   overflow-x: auto;
-  padding: 1rem;
+  padding: 1rem 1.15rem;
+  background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 img,
@@ -234,71 +319,174 @@ video {
 hr {
   border: 0;
   border-top: 1px solid var(--rule);
-  margin: 3rem 0;
+  margin: 3.5rem 0;
 }
 
-/* Piece body ------------------------------------------------------------ */
+/* Piece body ------------------------------------------------------------- */
 
-/* Outbound citations are marked so a reader can see, without hovering, that a
-   claim leaves the site to something checkable. */
-.prose a[href^='http']::after {
-  content: ' ↗';
-  font-size: 0.85em;
-  text-decoration: none;
+.prose h2 {
+  margin-top: 3rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.35rem;
 }
 
 .prose li + li {
-  margin-top: 0.35rem;
+  margin-top: 0.5rem;
 }
 
-/* Lists ----------------------------------------------------------------- */
+.prose strong {
+  font-weight: 600;
+}
 
-.piece-list {
+/* Outbound citations are marked so a reader can see, without hovering, that a
+   claim leaves the site to something checkable. Drawn rather than typed: the
+   subset faces carry no arrow glyph, and a font fallback for one character
+   renders differently on every platform. */
+.prose a[href^='http']::after {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  margin-left: 0.22em;
+  vertical-align: 0.06em;
+  background-color: currentColor;
+  -webkit-mask-image: var(--outbound-mark);
+  mask-image: var(--outbound-mark);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+:root {
+  --outbound-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.4 7.6 7.4 2.6M3.5 2.6h3.9v3.9' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Entry lists ------------------------------------------------------------ */
+
+/* An entry is one composed unit — series, title, dateline, description — set
+   apart by space rather than by a rule. */
+.entries {
   list-style: none;
-  margin: 2rem 0 0;
+  margin: 0;
   padding: 0;
-  max-width: var(--measure);
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
 }
 
-.piece-list li + li {
-  margin-top: 2rem;
-  border-top: 1px solid var(--rule);
-  padding-top: 2rem;
+.entry__title {
+  margin: 0 0 0.35rem;
+  font-size: var(--step-2);
+  line-height: 1.25;
+  letter-spacing: -0.012em;
 }
 
-.piece-list h2 {
-  margin: 0 0 0.25rem;
-  font-size: 1.25rem;
-}
-
-.piece-list h2 a {
+.entry__title a {
   color: var(--ink);
   text-decoration: none;
 }
 
-.piece-list h2 a:hover {
-  color: var(--accent);
+.entry__title a:hover {
+  color: var(--ink);
   text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-decoration-color: var(--accent);
 }
 
-.piece-list p {
-  margin: 0.5rem 0 0;
+.entry .eyebrow {
+  margin-bottom: 0.55rem;
 }
 
-.series-tag {
+.entry__date {
+  display: block;
+  margin-bottom: 0.65rem;
+}
+
+.entry__summary {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Section label above a list, e.g. "Latest". */
+.section-head {
+  margin: 3.25rem 0 1.75rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
   font-family: var(--font-ui);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
-.note {
-  max-width: var(--measure);
-  margin-top: 2.5rem;
-  padding: 1rem 1.25rem;
-  border: 1px dashed var(--rule);
+/* Datelines and standing notes ------------------------------------------- */
+
+/* Used where a page needs to say when and why it was written, without dressing
+   it up as prose. */
+.dateline {
+  margin: 3.5rem 0 0;
+  padding: 1.1rem 1.35rem;
+  background: var(--surface);
+  border-left: 2px solid var(--accent);
   font-family: var(--font-ui);
-  font-size: 0.9rem;
+  font-size: var(--step--1);
+  line-height: 1.6;
   color: var(--muted);
+}
+
+.dateline p {
+  margin: 0;
+}
+
+.dateline p + p {
+  margin-top: 0.6rem;
+}
+
+/* Closing line under a page or piece: back-links, feed, next step. */
+.tailpiece {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.tailpiece p {
+  margin: 0;
+}
+
+.tailpiece p + p {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 34rem) {
+  :root {
+    --step-0: 1.125rem;
+    --gutter: 1.25rem;
+  }
+
+  main {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .site-header {
+    padding-top: 1.5rem;
+  }
+
+  .site-header .shell {
+    gap: 0.6rem 1rem;
+  }
+
+  /* Five items on one line at 360px beats a ragged second row. */
+  .site-nav ul {
+    gap: 0.95rem;
+    font-size: 0.8125rem;
+  }
 }

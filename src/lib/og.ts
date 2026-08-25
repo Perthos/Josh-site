@@ -23,6 +23,18 @@ const fonts = [
     style: 'normal' as const,
     data: fontFile('Inter-SemiBold.ttf'),
   },
+  {
+    name: 'Newsreader',
+    weight: 400 as const,
+    style: 'normal' as const,
+    data: fontFile('Newsreader-Regular.ttf'),
+  },
+  {
+    name: 'Newsreader',
+    weight: 600 as const,
+    style: 'normal' as const,
+    data: fontFile('Newsreader-SemiBold.ttf'),
+  },
 ];
 
 export interface Card {
@@ -33,13 +45,34 @@ export interface Card {
   meta?: string;
 }
 
-const INK = '#16181d';
-const MUTED = '#5b6069';
-const PAPER = '#fbfaf7';
-const RULE = '#c9502f';
+const INK = '#1a1c1f';
+const MUTED = '#5f6570';
+const PAPER = '#faf8f3';
+const ACCENT = '#9e3412';
+const RULE = '#e6e1d7';
 
-/** Plain typographic card, no imagery. 1200x630, the size LinkedIn unfurls. */
+/** Titles run long; drop a step rather than let satori clip the box. */
+function titleSize(title: string): string {
+  if (title.length > 88) return '52px';
+  if (title.length > 60) return '62px';
+  return '74px';
+}
+
+/**
+ * Plain typographic card, no imagery. 1200x630, the size LinkedIn unfurls.
+ * Same parts as a page header on the site — accent rule, kicker, serif title,
+ * dateline — so a card and the page it points at read as one thing.
+ */
 function card({ kicker, title, meta }: Card) {
+  const row = (children: unknown[], style: Record<string, unknown> = {}) => ({
+    type: 'div',
+    props: { style: { display: 'flex', ...style }, children },
+  });
+  const text = (content: string, style: Record<string, unknown>) => ({
+    type: 'div',
+    props: { style: { display: 'flex', ...style }, children: content },
+  });
+
   return {
     type: 'div',
     props: {
@@ -50,67 +83,47 @@ function card({ kicker, title, meta }: Card) {
         flexDirection: 'column',
         justifyContent: 'space-between',
         backgroundColor: PAPER,
-        padding: '72px 80px',
+        padding: '76px 88px 60px',
         fontFamily: 'Inter',
-        borderTop: `16px solid ${RULE}`,
+        borderTop: `10px solid ${ACCENT}`,
       },
       children: [
+        text(kicker, {
+          fontSize: '25px',
+          fontWeight: 500,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: MUTED,
+        }),
         {
           type: 'div',
           props: {
-            style: {
-              display: 'flex',
-              fontSize: '26px',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: MUTED,
-            },
-            children: kicker,
-          },
-        },
-        {
-          type: 'div',
-          props: {
-            style: { display: 'flex', flexDirection: 'column', gap: '24px' },
+            style: { display: 'flex', flexDirection: 'column' },
             children: [
-              {
-                type: 'div',
-                props: {
-                  style: {
-                    display: 'flex',
-                    fontSize: title.length > 68 ? '58px' : '72px',
-                    fontWeight: 600,
-                    lineHeight: 1.15,
-                    color: INK,
-                  },
-                  children: title,
-                },
-              },
+              text(title, {
+                fontFamily: 'Newsreader',
+                fontSize: titleSize(title),
+                fontWeight: 600,
+                lineHeight: 1.14,
+                letterSpacing: '-0.015em',
+                color: INK,
+              }),
               ...(meta
                 ? [
-                    {
-                      type: 'div',
-                      props: {
-                        style: {
-                          display: 'flex',
-                          fontSize: '30px',
-                          color: MUTED,
-                        },
-                        children: meta,
-                      },
-                    },
+                    text(meta, {
+                      marginTop: '28px',
+                      fontSize: '28px',
+                      color: MUTED,
+                    }),
                   ]
                 : []),
             ],
           },
         },
-        {
-          type: 'div',
-          props: {
-            style: { display: 'flex', fontSize: '28px', color: MUTED },
-            children: SITE.domain,
-          },
-        },
+        row([text(SITE.domain, { fontSize: '26px', color: MUTED })], {
+          borderTop: `1px solid ${RULE}`,
+          paddingTop: '26px',
+        }),
       ],
     },
   };

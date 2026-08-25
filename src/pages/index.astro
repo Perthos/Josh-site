@@ -10,8 +10,11 @@ const latest = pieces.slice(0, 5);
 ---
 
 <Base title={SITE.title} description={SITE.description} ogSlug="home">
-  <h1>{SITE.name}</h1>
-  <p class="lede">{SITE.description}</p>
+  <div class="page-head page-head--display">
+    <h1>{SITE.name}</h1>
+    <p class="lede">{SITE.description}</p>
+    <hr class="page-head__rule" />
+  </div>
 
   <p>
     Start with <a href={href('/writing')}>the writing</a>, or read{' '}
@@ -21,22 +24,22 @@ const latest = pieces.slice(0, 5);
   {
     latest.length > 0 && (
       <>
-        <h2>Latest</h2>
-        <ul class="piece-list">
+        <h2 class="section-head">Latest</h2>
+        <ul class="entries">
           {latest.map((piece) => (
-            <li>
+            <li class="entry">
               {piece.data.series && (
-                <p class="series-tag">{piece.data.series}</p>
+                <span class="eyebrow">{piece.data.series}</span>
               )}
-              <h2>
+              <h3 class="entry__title">
                 <a href={href(`/writing/${piece.id}`)}>{piece.data.title}</a>
-              </h2>
-              <p class="meta">
+              </h3>
+              <span class="meta entry__date">
                 <time datetime={piece.data.date.toISOString()}>
                   {formatDate(piece.data.date)}
                 </time>
-              </p>
-              <p>{piece.data.description}</p>
+              </span>
+              <p class="entry__summary">{piece.data.description}</p>
             </li>
           ))}
         </ul>
@@ -44,5 +47,9 @@ const latest = pieces.slice(0, 5);
     )
   }
 
-  <p><a href={href('/rss.xml')}>Subscribe by feed</a> — no list, no sign-up.</p>
+  <div class="tailpiece">
+    <p>
+      <a href={href('/rss.xml')}>Subscribe by feed</a> — no list, no sign-up.
+    </p>
+  </div>
 </Base>
