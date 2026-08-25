@@ -1,10 +1,14 @@
 export const SITE = {
-  name: 'Josh Vanstone',
-  title: 'Josh Vanstone',
+  name: 'Josh Van Stone',
+  title: 'Josh Van Stone',
   description:
     'Writing on youth philanthropy, and the standards the writing is held to. Every claim carries its source.',
   locale: 'en',
-  /** Canonical home. Kept in sync with `site` in astro.config.mjs. */
+  /**
+   * Canonical home. Kept in sync with `site` in astro.config.mjs. The surname
+   * is two words; the domain closes it up because a hostname cannot hold a
+   * space.
+   */
   domain: 'joshvanstone.com',
 } as const;
 

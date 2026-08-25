@@ -1,6 +1,6 @@
 # joshvanstone.com
 
-The canonical home for work published under Josh Vanstone's name. A static site:
+The canonical home for work published under Josh Van Stone's name. A static site:
 every page is HTML generated at build time, and no page ships client-side
 JavaScript.
 
