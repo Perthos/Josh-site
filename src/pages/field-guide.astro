@@ -1,34 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
 import { href } from '../lib/site';
+import { Content as FieldGuideBody } from '../copy/field-guide.md';
+
+/*
+ * SOURCE TRACE (Site build 2, Perthos/Research#138)
+ *
+ * Body: `notes/design-principles-field-guide.md` in the corpus, carried
+ * WORD FOR WORD. The only transformation is mechanical: the provenance comment
+ * and the document's own h1 are stripped, because the page supplies the h1.
+ *
+ * The guide keeps its point-in-time figures (an org of about 80, a technology
+ * org of 250-plus) and its pre-layoff present tense. The standing ruling is
+ * that the source is not rewritten to match later revisions: rewriting it would
+ * falsify the record those revisions are traced against. The dateline below
+ * carries that context instead, in two sentences, as ruled.
+ *
+ * The dateline is the only new prose on this page. Zero em-dashes in it; the
+ * guide's own em-dashes stay, because they are the guide's words.
+ */
 ---
 
 <Base
   title="Field Guide"
-  description="A standing, practical guide — maintained rather than published once."
+  description="Eighteen sayings I use as design principles, and the reasoning underneath each one. Written in July 2026 for the architects I led."
   ogSlug="field-guide"
 >
   <div class="page-head">
-    <h1>Field Guide</h1>
+    <h1>Design Principles: A Field Guide</h1>
     <p class="lede">
-      A standing page rather than a dated piece: practical guidance kept current
-      as the work develops.
+      Eighteen sayings I use as design principles and thinking triggers, with
+      the reasoning underneath each one written down.
     </p>
     <hr class="page-head__rule" />
   </div>
 
-  <div class="prose">
+  <div class="dateline">
     <p>
-      Unlike <a href={href('/writing')}>the writing</a>, this page is revised in
-      place. It carries the same{' '}
+      Written in July 2026 for the cross-functional architects I led, and
+      published here unchanged, including its present tense and the org sizes
+      it names at the time. It is revised in place rather than dated like{' '}
+      <a href={href('/writing')}>the writing</a>, and it is held to the same{' '}
       <a href={href('/standards')}>standards</a>.
     </p>
   </div>
 
-  <div class="dateline">
-    <p>
-      Placeholder while the site is stood up. The guide's first contents land
-      with the content build.
-    </p>
+  <div class="prose">
+    <FieldGuideBody />
   </div>
 </Base>

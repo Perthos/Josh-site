@@ -16,10 +16,19 @@ const latest = pieces.slice(0, 5);
     <hr class="page-head__rule" />
   </div>
 
-  <p>
-    Start with <a href={href('/writing')}>the writing</a>, or read{' '}
-    <a href={href('/standards')}>the standards</a> the writing is held to.
-  </p>
+  <div class="prose">
+    <p>
+      The work is a series on one question: when producing code gets cheaper
+      but judgment, validation, and coordination don't, what happens to the
+      engineering organization?
+    </p>
+    <p>
+      Start with <a href={href('/writing')}>the writing</a>, or read{' '}
+      <a href={href('/standards')}>the standards</a> it is held to. Every
+      number and every attribution carries a named source and a live link, or
+      it comes out of the piece.
+    </p>
+  </div>
 
   {
     latest.length > 0 && (
@@ -49,7 +58,7 @@ const latest = pieces.slice(0, 5);
 
   <div class="tailpiece">
     <p>
-      <a href={href('/rss.xml')}>Subscribe by feed</a> — no list, no sign-up.
+      <a href={href('/rss.xml')}>Subscribe by feed</a>. No list, no sign-up.
     </p>
   </div>
 </Base>

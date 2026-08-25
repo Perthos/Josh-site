@@ -1,8 +1,12 @@
 export const SITE = {
   name: 'Josh Van Stone',
   title: 'Josh Van Stone',
+  /**
+   * The identity line, Variant A, ruled in the career-narrative record and
+   * protected under compression: the last clause is why it won.
+   */
   description:
-    'Writing on youth philanthropy, and the standards the writing is held to. Every claim carries its source.',
+    'Engineering executive and practicing architect. I work out what changes in a software organization when AI becomes part of the system, and I show the evidence.',
   locale: 'en',
   /**
    * Canonical home. Kept in sync with `site` in astro.config.mjs. The surname
@@ -26,6 +30,14 @@ export const NAV = [
  * the LinkedIn link appears everywhere the footer renders.
  */
 export const LINKEDIN_URL = '';
+
+/**
+ * A one-line description of the growyouthgiving strand, compressed from the
+ * Volunteering entry text. Deliberately no more than this: what the strand
+ * does next is an open decision and the site must not pre-empt it.
+ */
+export const FOOTER_NOTE =
+  'growyouthgiving.org is a kit and a story for teaching families affordable, approachable youth philanthropy.';
 
 export const FOOTER_LINKS = [
   {

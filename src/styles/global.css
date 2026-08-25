@@ -210,6 +210,11 @@ main {
   color: var(--muted);
 }
 
+.footer-note {
+  margin-bottom: 0.6rem !important;
+  max-width: 34rem;
+}
+
 /* Headings and prose ----------------------------------------------------- */
 
 h1,
