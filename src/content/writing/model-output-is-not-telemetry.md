@@ -85,7 +85,7 @@ The organizational form is who owns those decisions, how they scale when one eng
 
 That vantage point comes with a limit. I got to observe the effects and teach what I saw. I did not get to enact my conclusions and measure the consequences before the org changed under me. That is the honest limit on everything above, and it is the reason the standards page exists.
 
-It is also why I trust the record over my own first read of it. Through 2025 I was the skeptic on our AI push. The wins were real and they were not systematic at our scale, and the retooling and governance they demanded cost about what they saved. By spring 2026 our own power users flipped me. One of my managers instrumented a multi-petabyte pipeline I had been told was effectively unobservable, in weeks, and time to first commit in legacy repos fell from months to weeks. Anecdotes, not measurements. Enough to dig.
+It is also why I trust the record over my own first read of it. Through 2025 I was the skeptic on our AI push. The wins were real and they were not systematic at our scale, and the retooling and governance they demanded cost about what they saved. By spring 2026 our own power users changed my mind about where to look. One of my managers instrumented a multi-petabyte pipeline I had been told was effectively unobservable, in weeks, and time to first commit in legacy repos fell from months to weeks. Anecdotes, not measurements. Enough to dig.
 
 The two forms of the problem are not separable, and the next piece takes up the organizational one.
 
