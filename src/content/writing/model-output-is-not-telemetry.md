@@ -11,7 +11,7 @@ series: How AI systems fail
 
 I started this work with a stronger thesis than I have now. I thought LLM-based systems failed differently enough from conventional software that many familiar design patterns would have to change radically in practice. The record pushed me somewhere narrower: these systems change less of reliability engineering than I expected, and they make one old distinction much more important. The incident that best shows which distinction is one you have probably heard about, though the part that matters is not the part that made headlines.
 
-This is also the first piece in a series on one question: when producing code gets cheaper but judgment, validation, and coordination don't, what happens to the engineering organization? I state it up front because it is the scope. Failure is where the series starts, because you cannot work out where judgment has to sit until you know what these systems do when they fail.
+This is also the first piece in a series on one question: when producing code gets cheaper but judgment, validation, and coordination don't, what happens to the engineering organization? I state it up front because it is the scope, and I should say who is asking. I carried technical strategy and architecture across a technology org of 200-plus through the first years of this transition, with a direct engineering org of about ninety for the last of them. Failure is where the series starts, because you cannot work out where judgment has to sit until you know what these systems do when they fail.
 
 A Replit agent deleted production data during a stated code freeze. [Replit CEO Amjad Masad confirmed the incident](https://x.com/amasad/status/1946986468586721478), and the company subsequently introduced stronger separation between development and production environments. The deletion itself is familiar territory. Permissions, backups, destructive operations, environment isolation: every one of those controls was implicated in the usual ways.
 
@@ -51,9 +51,7 @@ The documented incidents say the same thing about controls. An agent that [delet
 
 What those incidents do and do not establish is its own question, and the method I use to answer it is set out on [the standards page](/standards/) this series is held to. The design point here is simpler. If a model follows hostile text as an instruction, model behavior is part of the failure, but the surrounding system determines what that behavior is allowed to become. Environment separation, least privilege, confirmation before destructive operations, explicit handling of untrusted content entering prompts, reversibility, and narrow tool scopes decided the blast radius in every one of these cases. The confirmation dialog is annoying right up until it is the only thing standing between a plausible-sounding plan and an empty database.
 
-When the component is probabilistic, the surrounding system should be less so.
-
-We can control the boundary.
+When the component is probabilistic, the surrounding system should be less so, and the boundary is the part we can control.
 
 ## Where validation stays expensive
 
@@ -77,7 +75,7 @@ And where a change is destructive and hard to verify, which is where security bo
 
 So effort does not move uniformly toward evaluation, and it does not split cleanly in two either. It concentrates where irreversibility meets weak verification. If you want to know where judgment will sit in an engineering organization, start by following the operations that are hard to undo and hard to check.
 
-Organizations are already building to roughly that shape, in their own accounts of themselves. Spotify's pipeline automates the mechanical verification, the formatting and building and testing, and reserves human review for what the company judges to matter most. Anthropic's security account is the more explicit one about the axis: hard access and identity boundaries to contain the blast radius, automated review before and after production, and humans inserted at the highest-leverage points. What nobody has published is independent evidence that any of it restores defect rates or delivery stability. Adoption is documented; efficacy is not. So the concentration claim remains a working model, with some first-party convergence behind it and no outcome data, and it is still the first claim in this series I expect the evidence to be able to break.
+Organizations are already building to roughly that shape, in their own accounts of themselves. Spotify's pipeline automates the mechanical verification, the formatting and building and testing, and reserves human review for what the company judges to matter most. Anthropic's security account is the more explicit one about the axis: hard access and identity boundaries to contain the blast radius, automated review before and after production, and humans inserted at the highest-leverage points. What nobody has published is independent evidence that any of it restores defect rates or delivery stability. So the concentration claim remains a working model, with some first-party convergence behind it and no outcome data, and it is still the first claim in this series I expect the evidence to be able to break.
 
 ## Why failure modes came first
 
@@ -85,7 +83,7 @@ This piece leads the series for a specific reason. These models can be wrong abo
 
 The organizational form is who owns those decisions, how they scale when one engineer supervises far more generated change than they could ever write, and how anyone acquires that judgment if implementation stops providing the repetitions.
 
-I should say where I am standing while I argue that. I carried technical strategy and architecture across a technology org of 200-plus through the first years of this transition, with a direct engineering org of about ninety for the last of them, and I got to observe the effects and teach what I saw. I did not get to enact my conclusions and measure the consequences before the org changed under me. That is the honest limit on everything above, and it is the reason the standards page exists.
+That vantage point comes with a limit. I got to observe the effects and teach what I saw. I did not get to enact my conclusions and measure the consequences before the org changed under me. That is the honest limit on everything above, and it is the reason the standards page exists.
 
 It is also why I trust the record over my own first read of it. Through 2025 I was the skeptic on our AI push. The wins were real and they were not systematic at our scale, and the retooling and governance they demanded cost about what they saved. By spring 2026 our own power users flipped me. One of my managers instrumented a multi-petabyte pipeline I had been told was effectively unobservable, in weeks, and time to first commit in legacy repos fell from months to weeks. Anecdotes, not measurements. Enough to dig.
 

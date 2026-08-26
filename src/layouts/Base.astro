@@ -19,7 +19,12 @@ const canonical = new URL(
   Astro.site,
 );
 const ogImage = new URL(href(`/og/${ogSlug}.png`), Astro.site);
-const pageTitle = title === SITE.title ? title : `${title} — ${SITE.name}`;
+// The home tab title carries the identity line's first clause so a cold
+// arrival (search result, shared link) gets a descriptor, not a bare name.
+const pageTitle =
+  title === SITE.title
+    ? `${SITE.name} — engineering executive and practicing architect`
+    : `${title} — ${SITE.name}`;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 // Self-hosted, latin-subset, variable. Declared here rather than in the

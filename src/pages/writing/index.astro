@@ -18,9 +18,15 @@ import { href, formatDate } from '../../lib/site';
  * Voice: zero em-dashes.
  */
 
-const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+// Notes (the colophon) are reachable from the footer, not listed with the
+// series: this page frames itself as the series index, and a post about the
+// site is not part of the body of work it promises.
+const pieces = (
+  await getCollection(
+    'writing',
+    ({ data }) => !data.draft && data.series !== 'Notes',
+  )
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Base

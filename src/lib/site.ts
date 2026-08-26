@@ -25,19 +25,38 @@ export const NAV = [
 ] as const;
 
 /**
- * The operator's LinkedIn profile URL. Left empty on purpose: the footer slot
- * is wired, but a guessed profile URL would ship a wrong link. Fill this in and
- * the LinkedIn link appears everywhere the footer renders.
+ * The operator's LinkedIn profile URL. Left empty on purpose: the footer and
+ * contact slots are wired, but a guessed profile URL would ship a wrong link.
+ * Fill this in and the LinkedIn link appears everywhere the footer renders,
+ * and the About's closing gains its reach-me sentence.
  */
 export const LINKEDIN_URL = '';
 
 /**
+ * A public contact address, if the operator wants one. Same rule as
+ * LINKEDIN_URL: wired, empty until supplied, never guessed.
+ */
+export const CONTACT_EMAIL = '';
+
+/**
+ * The channels a reader can actually answer through. The site asks for
+ * disagreement on every surface; this is where the ask stops being
+ * rhetorical. Empty entries drop out, so with both blanks unset the contact
+ * sentence and footer links simply do not render.
+ */
+export const CONTACT_LINKS = [
+  { href: LINKEDIN_URL, label: 'LinkedIn' },
+  { href: CONTACT_EMAIL === '' ? '' : `mailto:${CONTACT_EMAIL}`, label: 'email' },
+].filter((link) => link.href !== '');
+
+/**
  * A one-line description of the growyouthgiving strand, compressed from the
- * Volunteering entry text. Deliberately no more than this: what the strand
- * does next is an open decision and the site must not pre-empt it.
+ * Volunteering entry text ("Built to share the idea" carries the authorship).
+ * Deliberately no more than this: what the strand does next is an open
+ * decision and the site must not pre-empt it.
  */
 export const FOOTER_NOTE =
-  'growyouthgiving.org is a kit and a story for teaching families affordable, approachable youth philanthropy.';
+  'I built growyouthgiving.org: a kit and a story for teaching families affordable, approachable youth philanthropy.';
 
 export const FOOTER_LINKS = [
   {
@@ -46,6 +65,12 @@ export const FOOTER_LINKS = [
     external: true,
   },
   { href: LINKEDIN_URL, label: 'LinkedIn', external: true },
+  {
+    href: CONTACT_EMAIL === '' ? '' : `mailto:${CONTACT_EMAIL}`,
+    label: 'Email',
+    external: true,
+  },
+  { href: '/writing/colophon', label: 'Colophon', external: false },
   { href: '/rss.xml', label: 'RSS', external: false },
 ].filter((link) => link.href !== '');
 

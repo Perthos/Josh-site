@@ -1,41 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE, href } from '../lib/site';
+import { href, CONTACT_LINKS } from '../lib/site';
 
 /*
- * SOURCE TRACE (Site build 2, Perthos/Research#138)
+ * SOURCE TRACE (Site build 3, back-propagation round, 2026-08-26)
  *
- * Body prose: `notes/career-narrative-draft.md` §2, the canonical 604-word
- * narrative, carried near-verbatim. This is the one surface with room for it,
- * so it runs at full length rather than in the compressed form the short
- * surfaces take.
+ * Body prose: `notes/career-narrative-draft.md` §2 at v4, the back-propagated
+ * canonical narrative, carried near-verbatim. v4 folds the corrections the
+ * LinkedIn About accepted across rounds 4-12 back into the canon; the
+ * change-by-change record and its rulings are §10 of that file.
  *
- * Three source-traced amendments to §2, each with its own ruling:
- *   - "a technology org of 200-plus" inserted into the chronology, per the
- *     round-6 scale ruling (`notes/linkedin-rewrite-draft.md` §15: 200-plus
- *     everywhere in shipping prose, "I don't want to overstate").
- *   - Layoff telling is Variant A, the full ruled paragraph
- *     (`career-narrative-draft.md` §3). #138 licenses Variant A for this
- *     surface specifically.
- *   - The unfinished-charge paragraph is added from
- *     `notes/linkedin-rewrite-draft.md` §21, which routes it here by name.
- *     COMFORT FLAG: it states publicly that the charge was not completed.
- *     Only the operator can authorize that disclosure. Cutting it removes one
- *     paragraph and nothing else depends on it.
+ * What changed against the v3-based page:
+ *   - Career proof moved up to the second paragraph ("I came up through the
+ *     whole job"), per round 4 finding 2 and round 7 finding 1.
+ *   - "Those are usually two people." cut, per the round 8a ruling.
+ *   - The research-process paragraph loses its mechanism-detail sentence,
+ *     per round 7 finding 2; "The first thing it caught was me" survives.
+ *   - Layoff telling is now Variant C, the ruled compression. The Variant A
+ *     licence for this surface is amended by §10, pending operator sign-off.
+ *   - "So that's what I'm doing with the time" replaced by the six-month
+ *     window through February 2027, per round 7 finding 3 (v4.1-signed form).
  *
- * Deliberately absent: "servant leadership" as a claim anywhere; any AI-skill
- * claim; any growyouthgiving line (`linkedin-rewrite-draft.md` §6 rules the
- * strand gets its own placement, not an orphan sentence in a professional
- * summary, and the open question about its next move must not be pre-decided
- * here). The strand is in the footer.
+ * Site-only additions, unchanged in role: the Standards pointer sentence, the
+ * Field Guide link sentence, the Writing pointer, and the contact sentence
+ * that renders only once CONTACT_LINKS has entries.
  *
- * Voice: zero em-dashes throughout.
+ * Voice: zero em-dashes.
  */
 ---
 
 <Base
   title="About"
-  description={SITE.description}
+  description="The career behind the question: Micron, Tableau, Comscore, and why this work has the shape it does."
   ogSlug="about"
 >
   <div class="page-head">
@@ -58,12 +54,24 @@ import { SITE, href } from '../lib/site';
     </p>
 
     <p>
-      I'm an engineering executive and a practicing enterprise architect.
-      Those are usually two people. Doing both is why the questions I care
-      about sit across the line. How work should decompose between humans,
-      models, and the systems that check them is a technical architecture
-      question and an organizational one at the same time, and you can't
-      answer half of it and call it done.
+      I came up through the whole job. I started in electrical engineering at
+      Micron, on flash reliability, and my first boss out of school gave me
+      the thing I still run on: trust your process, verify the output. Eight
+      years at Tableau took me from tier four support through software
+      engineering, product, and program management to director-level
+      architecture. At Comscore I ran enterprise architecture, picked up
+      technical strategy for a technology org of 200-plus when our CTO left
+      in 2024, and finished as SVP Engineering with a direct org of about
+      ninety.
+    </p>
+
+    <p>
+      I'm an engineering executive and a practicing enterprise architect, and
+      doing both at once is why the questions I care about sit across the
+      line. How work should decompose between humans, models, and the systems
+      that check them is a technical architecture question and an
+      organizational one at the same time, and you can't answer half of it
+      and call it done.
     </p>
 
     <p>
@@ -71,28 +79,12 @@ import { SITE, href } from '../lib/site';
       half my engineers weren't yet fluent enough in these systems to design
       around them responsibly, and I wasn't willing to ask them to build on
       something whose failure modes I couldn't explain. So I went looking for
-      what we actually know. Most of what I found was a small number of claims
-      echoing loudly, so I ended up building a research process before I had
-      anything to say. Commissioned questions, the framing audited for bias
-      before acquisition starts, an independent pass whose whole job is to
-      attack the result. The first thing it caught was me, commissioning my
+      what we actually know, and most of what I found was a small number of
+      claims echoing loudly. I ended up building a research process before I
+      had anything to say. The first thing it caught was me, commissioning my
       own conclusion. That's the reason I trust it at all, and it's still an
-      instrument, not an authority. What it produces, and the rules it is held
-      to, are on <a href={href('/standards')}>Standards</a>.
-    </p>
-
-    <p>
-      Getting here wasn't a straight line. I started in electrical engineering
-      at Micron, on flash reliability, and my first boss out of school gave me
-      the thing I still run on: trust your process, verify the output. Eight
-      years at Tableau took me from tier four support to software engineering,
-      then product, then program management, then back into architecture at
-      the director level, until the January 2023 layoffs ended it. I took the
-      summer off and started at Comscore that October, running architecture
-      and a group of about thirty. Our CTO left the following June and I
-      picked up technical strategy for a technology org of 200-plus. In
-      September 2025 I took the SVP promotion and an engineering organization
-      of about ninety.
+      instrument, not an authority. What it produces, and the rules it is
+      held to, are on <a href={href('/standards')}>Standards</a>.
     </p>
 
     <p>
@@ -108,11 +100,9 @@ import { SITE, href } from '../lib/site';
     </p>
 
     <p>
-      Two weeks later I was laid off. That's twice in under four years,
-      Tableau in the post-COVID downsizing and Comscore on August eleventh.
-      Neither one was about the work, and neither one is a story about a
-      company. Headcount corrections have been running through this industry
-      for four years, and this time I was in one.
+      Two weeks later I was laid off. Second time in under four years. Tableau
+      in January 2023, Comscore on August eleventh. I'm not going to make
+      either one mean more than it does.
     </p>
 
     <p>
@@ -126,17 +116,33 @@ import { SITE, href } from '../lib/site';
     </p>
 
     <p>
-      So that's what I'm doing with the time. The internal work, made public:
-      the question, what the evidence supports, what it doesn't cover, and the
-      decision I'd make anyway. Every number and every attribution carries a
-      named source and a live link, or it comes out of the piece. I'd rather
-      publish nothing than add to the noise.
+      I'm taking six months, through February 2027, to make the internal work
+      public: the question, what the evidence supports, what it doesn't
+      cover, and the decision I'd make anyway. Every number and every
+      attribution carries a named source and a live link, or it comes out of
+      the text. I'd rather publish nothing than add to the noise.
     </p>
 
     <p>
       If you're making these calls too, I want to hear where your experience
       doesn't match mine. Feedback is a gift and that's exactly the kind I'm
       looking for. The pieces are on <a href={href('/writing')}>Writing</a>.
+      {
+        CONTACT_LINKS.length > 0 && (
+          <>
+            {' '}The fastest way to reach me is{' '}
+            {CONTACT_LINKS.map((link, i) => (
+              <>
+                {i > 0 && ' or '}
+                <a href={link.href} rel="me noopener">
+                  {link.label}
+                </a>
+              </>
+            ))}
+            .
+          </>
+        )
+      }
     </p>
   </div>
 </Base>
