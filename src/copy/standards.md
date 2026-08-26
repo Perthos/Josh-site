@@ -46,6 +46,16 @@ Recommendations and requirements exist. [Fourteen authors have proposed principl
 
 Until that evidence exists, the reading discipline is not overhead. It is the substitute for the field data the industry does not have. This page is the standard everything I publish is held to: separating what has been demonstrated, where evidence is converging, and what remains a judgment call, and labeling which is which. When a piece in the series says "this is a call, not a finding," this page is what that label means.
 
+## Where the models sit
+
+AI is inside this workflow, and it is worth being exact about where, because these pieces argue that the boundary is the part you control.
+
+Research runs on commissioned questions. A model audits the commission's framing for bias before any evidence is gathered, a separate run does the acquisition and drafting, and an independent adversarial pass, on a different model family in a clean context, exists to attack the result. The first thing that pipeline caught was me, commissioning my own conclusion.
+
+The models do production: exploring questions, locating candidate sources, drafting, editing. They do not carry accountability. Every numeric or attributed claim is checked against a named primary source with a live link, or it comes out of the text. Critical quotes are checked against the source document. No model output is ever cited as a source. The first piece argues a model's statement is not a measurement, and that rule applies to this site before it applies to your systems.
+
+The judgment stays with me. I frame the questions, rule on what ships, and sign every release. Where a piece makes a call past the evidence, the call is mine and it is labeled. A phrase a model proposes does not enter my voice until I adopt it deliberately, and the ones I decline come out.
+
 The first piece, [on why model output is not telemetry](/writing/model-output-is-not-telemetry/), is this method applied to the incidents above and cashed out as architecture.
 
 If you have primary sources that break these readings, send them.
