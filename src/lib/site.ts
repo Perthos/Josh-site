@@ -2,8 +2,12 @@ export const SITE = {
   name: 'Josh Van Stone',
   title: 'Josh Van Stone',
   /**
-   * The identity line, Variant A, ruled in the career-narrative record and
-   * protected under compression: the last clause is why it won.
+   * The identity line, Variant A, ruled in the career-narrative record, as
+   * AMENDED by the operator ruling of 2026-08-26 (§4): "and I show the
+   * evidence" is struck on every surface. It was the restating-what-should-be-
+   * shown pattern, and the protect-under-compression constraint that had
+   * defended it is void. The line is now the duality and the subject; the
+   * standard is demonstrated on Standards rather than claimed here.
    */
   description:
     'Engineering executive and practicing architect. I work out what changes in a software organization when AI becomes part of the system.',
