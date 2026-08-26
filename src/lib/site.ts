@@ -6,7 +6,7 @@ export const SITE = {
    * protected under compression: the last clause is why it won.
    */
   description:
-    'Engineering executive and practicing architect. I work out what changes in a software organization when AI becomes part of the system, and I show the evidence.',
+    'Engineering executive and practicing architect. I work out what changes in a software organization when AI becomes part of the system.',
   locale: 'en',
   /**
    * Canonical home. Kept in sync with `site` in astro.config.mjs. The surname
