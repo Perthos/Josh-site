@@ -4,8 +4,13 @@ import { getCollection } from 'astro:content';
 import { SITE, href } from '../lib/site';
 
 export const GET: APIRoute = async (context) => {
+  // The feed is titled "writing" and promises the series; Notes (the
+  // colophon) stay out so subscribers get pieces, not site meta.
   const pieces = (
-    await getCollection('writing', ({ data }) => !data.draft)
+    await getCollection(
+      'writing',
+      ({ data }) => !data.draft && data.series !== 'Notes',
+    )
   ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
   // `context.site` is the origin alone; the base path is configured separately.

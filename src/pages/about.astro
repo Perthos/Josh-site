@@ -1,118 +1,77 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE, href } from '../lib/site';
+import { href, CONTACT_LINKS } from '../lib/site';
 
 /*
- * SOURCE TRACE (Site build 2, Perthos/Research#138)
+ * SOURCE TRACE (Site build 3, second back-propagation round, 2026-08-26)
  *
- * Body prose: `notes/career-narrative-draft.md` §2, the canonical 604-word
- * narrative, carried near-verbatim. This is the one surface with room for it,
- * so it runs at full length rather than in the compressed form the short
- * surfaces take.
+ * Body prose: `notes/career-narrative-draft.md` §2 at v5, which is the
+ * LinkedIn About v9 (`linkedin-rewrite-draft.md` §24, the final round-12
+ * form) carried onto this surface, plus the one paragraph ruled to the site
+ * About only: the unfinished charge (§21 routing). Operator ruling: "this
+ * whole thing should be much closer to the linkedin final version than the
+ * original." The change record is §10 of the career-narrative file.
  *
- * Three source-traced amendments to §2, each with its own ruling:
- *   - "a technology org of 200-plus" inserted into the chronology, per the
- *     round-6 scale ruling (`notes/linkedin-rewrite-draft.md` §15: 200-plus
- *     everywhere in shipping prose, "I don't want to overstate").
- *   - Layoff telling is Variant A, the full ruled paragraph
- *     (`career-narrative-draft.md` §3). #138 licenses Variant A for this
- *     surface specifically.
- *   - The unfinished-charge paragraph is added from
- *     `notes/linkedin-rewrite-draft.md` §21, which routes it here by name.
- *     COMFORT FLAG: it states publicly that the charge was not completed.
- *     Only the operator can authorize that disclosure. Cutting it removes one
- *     paragraph and nothing else depends on it.
+ * Consequences of the v9 form, all recorded in §10:
+ *   - No layoff telling on this surface; "before my tenure ended" is the
+ *     only departure signal, matching v9's no-status-disclosure posture.
+ *   - The identity taxonomy lives in the page lede only and is not repeated
+ *     in the body (§24 dependency: if the lede changes, revisit the opener).
+ *   - SVP title and the about-ninety figure live on the Home provenance
+ *     line, the site's equivalent of the Experience entries.
+ *   - The field guide is framed by its own page and the Home feature, not
+ *     here.
  *
- * Deliberately absent: "servant leadership" as a claim anywhere; any AI-skill
- * claim; any growyouthgiving line (`linkedin-rewrite-draft.md` §6 rules the
- * strand gets its own placement, not an orphan sentence in a professional
- * summary, and the open question about its next move must not be pre-decided
- * here). The strand is in the footer.
+ * Site-only additions: the Standards pointer sentence after the confession,
+ * the Writing pointer in the close, and the contact sentence that renders
+ * only once CONTACT_LINKS has entries.
  *
- * Voice: zero em-dashes throughout.
+ * Voice: zero em-dashes.
  */
 ---
 
 <Base
   title="About"
-  description={SITE.description}
+  description="The career behind the question: Micron, Tableau, Comscore, and why this work has the shape it does."
   ogSlug="about"
 >
   <div class="page-head">
     <h1>About</h1>
     <p class="lede">
       Engineering executive and practicing architect. I work out what changes
-      in a software organization when AI becomes part of the system, and I
-      show the evidence.
+      in a software organization when AI becomes part of the system.
     </p>
     <hr class="page-head__rule" />
   </div>
 
   <div class="prose">
     <p>
-      If you run an engineering organization right now, you are being asked to
-      make decisions about AI faster than anyone can hand you evidence for
-      them. Ship it, don't ship it, restructure the team around it, tell your
-      board what it's worth. That's the problem I work on, and I don't have a
-      tidy answer to sell you.
+      I've spent my career at the intersection of engineering organizations
+      and the systems they build: Micron, then Tableau, then Comscore, where
+      I ran enterprise architecture and technical strategy for a technology
+      org of 200-plus.
     </p>
 
     <p>
-      I'm an engineering executive and a practicing enterprise architect.
-      Those are usually two people. Doing both is why the questions I care
-      about sit across the line. How work should decompose between humans,
-      models, and the systems that check them is a technical architecture
-      question and an organizational one at the same time, and you can't
-      answer half of it and call it done.
+      AI is making implementation cheap. I think that moves engineering's
+      real constraints to choosing what to build, verifying what got built,
+      and owning the result. I'm spending the next six months, through
+      February 2027, testing that against real cases in public.
     </p>
 
     <p>
-      The work started inside a company, not as a writing project. More than
-      half my engineers weren't yet fluent enough in these systems to design
-      around them responsibly, and I wasn't willing to ask them to build on
-      something whose failure modes I couldn't explain. So I went looking for
-      what we actually know. Most of what I found was a small number of claims
-      echoing loudly, so I ended up building a research process before I had
-      anything to say. Commissioned questions, the framing audited for bias
-      before acquisition starts, an independent pass whose whole job is to
-      attack the result. The first thing it caught was me, commissioning my
-      own conclusion. That's the reason I trust it at all, and it's still an
-      instrument, not an authority. What it produces, and the rules it is held
-      to, are on <a href={href('/standards')}>Standards</a>.
+      I came to this as the skeptic. Through 2025 the wins I saw weren't
+      systematic at our scale. Then one of my managers instrumented a
+      multi-petabyte pipeline I'd been told was effectively unobservable, in
+      weeks, and first-commit time in legacy repos fell from months to weeks.
+      Not proof; enough to dig.
     </p>
 
     <p>
-      Getting here wasn't a straight line. I started in electrical engineering
-      at Micron, on flash reliability, and my first boss out of school gave me
-      the thing I still run on: trust your process, verify the output. Eight
-      years at Tableau took me from tier four support to software engineering,
-      then product, then program management, then back into architecture at
-      the director level, until the January 2023 layoffs ended it. I took the
-      summer off and started at Comscore that October, running architecture
-      and a group of about thirty. Our CTO left the following June and I
-      picked up technical strategy for a technology org of 200-plus. In
-      September 2025 I took the SVP promotion and an engineering organization
-      of about ninety.
-    </p>
-
-    <p>
-      Late this July I wrote a field guide for the architects I lead. They'd
-      noticed I kept deploying the same eighteen sayings and asked what was
-      actually underneath them, so I wrote the reasoning down, with the prior
-      art collected in an appendix because standing on somebody's shoulders is
-      a feature. The stated goal of the document was that they could
-      eventually operate the way I do without me in the room. That's the job
-      as I understand it. A system that works in spite of me, not because of
-      me. It is on this site, unchanged, as the{' '}
-      <a href={href('/field-guide')}>Field Guide</a>.
-    </p>
-
-    <p>
-      Two weeks later I was laid off. That's twice in under four years,
-      Tableau in the post-COVID downsizing and Comscore on August eleventh.
-      Neither one was about the work, and neither one is a story about a
-      company. Headcount corrections have been running through this industry
-      for four years, and this time I was in one.
+      The research process I built has one job: break my conclusions. The
+      first thing it caught was me. I had commissioned my own conclusion.
+      What it produces and where the models sit are on{' '}
+      <a href={href('/standards')}>Standards</a>.
     </p>
 
     <p>
@@ -126,17 +85,30 @@ import { SITE, href } from '../lib/site';
     </p>
 
     <p>
-      So that's what I'm doing with the time. The internal work, made public:
-      the question, what the evidence supports, what it doesn't cover, and the
-      decision I'd make anyway. Every number and every attribution carries a
-      named source and a live link, or it comes out of the piece. I'd rather
-      publish nothing than add to the noise.
+      I publish the evidence, the gaps, and, when a decision has to be made
+      anyway, the call I'd make. The pieces are on{' '}
+      <a href={href('/writing')}>Writing</a>.
     </p>
 
     <p>
-      If you're making these calls too, I want to hear where your experience
-      doesn't match mine. Feedback is a gift and that's exactly the kind I'm
-      looking for. The pieces are on <a href={href('/writing')}>Writing</a>.
+      If you've watched AI change how your teams deliver, or fail to, I want
+      the specifics: what moved, what broke, and what refused to get cheaper.
+      {
+        CONTACT_LINKS.length > 0 && (
+          <>
+            {' '}The fastest way to reach me is{' '}
+            {CONTACT_LINKS.map((link, i) => (
+              <>
+                {i > 0 && ' or '}
+                <a href={link.href} rel="me noopener">
+                  {link.label}
+                </a>
+              </>
+            ))}
+            .
+          </>
+        )
+      }
     </p>
   </div>
 </Base>

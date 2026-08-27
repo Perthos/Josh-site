@@ -3,9 +3,42 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { SITE, href, formatDate } from '../lib/site';
 
-const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+/*
+ * SOURCE TRACE (Site build 3, back-propagation round, 2026-08-26)
+ *
+ * Identity lede: the ruled one-line identity, §4 Variant A, carrying the
+ * 2026-08-26 amendment that strikes the evidence clause. Same ruling swept
+ * the held-to phrasing out of the tailpiece below.
+ *
+ * Provenance line: NEW on this surface, implementing round 4 finding 2 and
+ * round 7 finding 1 (the biography was buried), confirmed by both 2026-08-26
+ * site cold reads ("why Josh?"). Every figure is the ruled round-6 wording:
+ * SVP Engineering, direct org of about ninety, technology org of 200-plus,
+ * eight years at Tableau. COINAGE FLAG: the arrangement is build-written.
+ *
+ * The question: `notes/piece-sequencing.md` ruling, §20 form, stated as the
+ * dominant idea. The Standards paragraph this page used to carry is demoted
+ * to a single pointer in the tailpiece, per the spine ruling (the method is
+ * the warrant, never the topic) and both cold reads.
+ *
+ * Start here: the series pieces (Notes excluded), newest first. With one
+ * piece published the section reads "Start here" rather than asking a new
+ * visitor to understand the taxonomy; the piece's own description carries
+ * the incident hook.
+ *
+ * Field Guide feature: description from the field-guide page's own lede and
+ * dateline, per the shown-not-claimed posture (piece-sequencing: the
+ * strongest such asset on hand).
+ *
+ * Voice: zero em-dashes.
+ */
+
+const pieces = (
+  await getCollection(
+    'writing',
+    ({ data }) => !data.draft && data.series !== 'Notes',
+  )
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latest = pieces.slice(0, 5);
 ---
 
@@ -13,6 +46,11 @@ const latest = pieces.slice(0, 5);
   <div class="page-head page-head--display">
     <h1>{SITE.name}</h1>
     <p class="lede">{SITE.description}</p>
+    <p class="meta">
+      SVP Engineering at Comscore until August 2026: a direct org of about
+      ninety, and technical strategy and architecture across a technology org
+      of 200-plus. Eight years at Tableau before that.
+    </p>
     <hr class="page-head__rule" />
   </div>
 
@@ -22,18 +60,14 @@ const latest = pieces.slice(0, 5);
       but judgment, validation, and coordination don't, what happens to the
       engineering organization?
     </p>
-    <p>
-      Start with <a href={href('/writing')}>the writing</a>, or read{' '}
-      <a href={href('/standards')}>the standards</a> it is held to. Every
-      number and every attribution carries a named source and a live link, or
-      it comes out of the piece.
-    </p>
   </div>
 
   {
     latest.length > 0 && (
       <>
-        <h2 class="section-head">Latest</h2>
+        <h2 class="section-head">
+          {latest.length === 1 ? 'Start here' : 'Latest'}
+        </h2>
         <ul class="entries">
           {latest.map((piece) => (
             <li class="entry">
@@ -56,9 +90,20 @@ const latest = pieces.slice(0, 5);
     )
   }
 
+  <h2 class="section-head">Field Guide</h2>
+  <div class="prose">
+    <p>
+      Eighteen sayings I use as design principles, with the reasoning
+      underneath each one. Written in July 2026 for the architects I led, and
+      published unchanged. <a href={href('/field-guide')}>Read the Field
+      Guide</a>.
+    </p>
+  </div>
+
   <div class="tailpiece">
     <p>
-      <a href={href('/rss.xml')}>Subscribe by feed</a>. No list, no sign-up.
+      <a href={href('/rss.xml')}>Subscribe by feed</a>. Read{' '}
+      <a href={href('/standards')}>the standards</a>.
     </p>
   </div>
 </Base>
