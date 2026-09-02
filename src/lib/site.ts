@@ -74,7 +74,6 @@ export const FOOTER_LINKS = [
     label: 'Email',
     external: true,
   },
-  { href: '/writing/colophon', label: 'Colophon', external: false },
   { href: '/rss.xml', label: 'RSS', external: false },
 ].filter((link) => link.href !== '');
 
