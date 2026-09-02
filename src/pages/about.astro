@@ -3,14 +3,14 @@ import Base from '../layouts/Base.astro';
 import { href, CONTACT_LINKS } from '../lib/site';
 
 /*
- * SOURCE TRACE (Site build 3, second back-propagation round, 2026-08-26)
+ * SOURCE TRACE (reduction round, 2026-09-02)
  *
- * Body prose: `notes/career-narrative-draft.md` §2 at v5, which is the
- * LinkedIn About v9 (`linkedin-rewrite-draft.md` §24, the final round-12
- * form) carried onto this surface, plus the one paragraph ruled to the site
- * About only: the unfinished charge (§21 routing). Operator ruling: "this
- * whole thing should be much closer to the linkedin final version than the
- * original." The change record is §10 of the career-narrative file.
+ * Body prose: `notes/career-narrative-draft.md` §2 at v6: the LinkedIn About
+ * v9 form reduced on operator ruling after cold reads found this page "still
+ * too long-winded". The skeptic-to-flip paragraph now lives once, at piece
+ * 1's close; the unfinished-charge paragraph is cut. The thesis paragraph is
+ * provisional pending the `sdlc-compression-thesis` run. Nothing on this
+ * surface is signed. The change record is §10 of the career-narrative file.
  *
  * Consequences of the v9 form, all recorded in §10:
  *   - No layoff telling on this surface; "before my tenure ended" is the
@@ -32,7 +32,7 @@ import { href, CONTACT_LINKS } from '../lib/site';
 
 <Base
   title="About"
-  description="The career behind the question: Micron, Tableau, Comscore, and why this work has the shape it does."
+  description="Micron, Tableau, Comscore, and what this work is testing."
   ogSlug="about"
 >
   <div class="page-head">
@@ -60,28 +60,10 @@ import { href, CONTACT_LINKS } from '../lib/site';
     </p>
 
     <p>
-      I came to this as the skeptic. Through 2025 the wins I saw weren't
-      systematic at our scale. Then one of my managers instrumented a
-      multi-petabyte pipeline I'd been told was effectively unobservable, in
-      weeks, and first-commit time in legacy repos fell from months to weeks.
-      Not proof; enough to dig.
-    </p>
-
-    <p>
       The research process I built has one job: break my conclusions. The
       first thing it caught was me. I had commissioned my own conclusion.
       What it produces and where the models sit are on{' '}
       <a href={href('/standards')}>Standards</a>.
-    </p>
-
-    <p>
-      My last charge was the course from a legacy data estate to an
-      architecture that could carry the business into its next decade. I
-      believed a data mesh could do it if we solved the governance problem. We
-      solved neither before my tenure ended. The diagnosis is still untested,
-      and that stings. It is also the reason this work exists in the shape it
-      does: I got to observe and teach, and I did not get to enact and
-      measure.
     </p>
 
     <p>

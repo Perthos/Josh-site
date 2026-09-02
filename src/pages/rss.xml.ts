@@ -4,8 +4,8 @@ import { getCollection } from 'astro:content';
 import { SITE, href } from '../lib/site';
 
 export const GET: APIRoute = async (context) => {
-  // The feed is titled "writing" and promises the series; Notes (the
-  // colophon) stay out so subscribers get pieces, not site meta.
+  // The feed promises the series; anything filed under a Notes series stays
+  // out so subscribers get pieces, not site meta.
   const pieces = (
     await getCollection(
       'writing',

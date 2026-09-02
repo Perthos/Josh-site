@@ -10,17 +10,14 @@ import { href, formatDate } from '../../lib/site';
  * ruled on 2026-08-22 (the "dramatically" cut). A later amendment proposing to
  * open the question further is on the record and unsigned, so this form stands.
  *
- * The arc: `notes/piece-sequencing.md`, "The committed three", one sentence per
- * piece, ordered causally rather than by evidence strength. Three is the
- * commitment; the list is deliberately not extended ahead of shipping, which is
- * the recorded failure mode of this effort.
+ * The roadmap (three committed pieces, one sentence each) and the
+ * "labelled as a call" paragraph were cut 2026-09-02 on operator ruling: the
+ * page carries the question and the published pieces, and nothing about what
+ * is coming.
  *
  * Voice: zero em-dashes.
  */
 
-// Notes (the colophon) are reachable from the footer, not listed with the
-// series: this page frames itself as the series index, and a post about the
-// site is not part of the body of work it promises.
 const pieces = (
   await getCollection(
     'writing',
@@ -42,36 +39,6 @@ const pieces = (
       organization?
     </p>
     <hr class="page-head__rule" />
-  </div>
-
-  <div class="prose">
-    <p>
-      The question is stated in public because it is the scope. Three pieces
-      are committed, ordered so that each is the prerequisite for the next
-      rather than by how strong the evidence is.
-    </p>
-    <ol>
-      <li>
-        <strong>How AI systems fail, and what that changes about design.</strong>{' '}
-        How systems fail is what you have to design for, and the old patterns
-        mostly hold in principle while looking different in practice.
-      </li>
-      <li>
-        <strong>Where judgment has to sit, given how they fail.</strong> Who
-        owns the decisions that failure modes push onto people, and what it
-        costs to put judgment there.
-      </li>
-      <li>
-        <strong>How judgment is acquired when the mechanical layer is
-        absorbed.</strong> Where the next generation gets the repetitions if
-        implementation stops providing them.
-      </li>
-    </ol>
-    <p>
-      Where the evidence runs out and a decision still has to be made, a
-      piece says so and makes the call anyway, labelled as a call. What that
-      label means is on <a href={href('/standards')}>Standards</a>.
-    </p>
   </div>
 
   {
