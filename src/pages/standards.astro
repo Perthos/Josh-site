@@ -1,44 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
-import { Content as StandardsBody } from '../copy/standards.md';
+import { Content as MethodsBody } from '../copy/standards.md';
 
-/*
- * SOURCE TRACE (Site build 2, Perthos/Research#138)
- *
- * Body: `writing/how-ai-systems-fail/final-standards-how-to-read-an-ai-incident-report.md`
- * in the corpus, generated into `src/copy/standards.md` with its provenance and
- * flag comments stripped. That final applies the 2026-08-22 reconciliation's
- * edit round and the claim rewordings earned by the evaluation-practice-claims
- * run (Perthos/Research#141), which lifted the last blocker on this page.
- *
- * This page is what "this is a call, not a finding" links to, series-wide. Its
- * closing pointer links piece 1; piece 1's first citation of the reading
- * discipline links back here. Both directions are checked at build.
- *
- * Two standing comfort flags are recorded on the corpus file rather than here:
- * the Snyk incentive sentence, and the origin-counting section stating in the
- * operator's own voice that a public count was wrong.
- *
- * Voice: zero em-dashes.
- */
+// Keep the established URL so links from earlier copies of the essay resolve.
 ---
 
 <Base
-  title="Standards"
-  description="How I read an AI incident report, and the rules every piece here is held to."
+  title="Methods"
+  description="How I distinguish evidence, uncertainty, and architectural judgment, and where AI helps with the work."
   ogSlug="standards"
 >
   <div class="page-head">
-    <h1>How to read an AI incident report</h1>
-    <p class="lede">
-      The rules every piece here is held to, worked through the incidents that
-      taught me to ask for them. Published so a reader can hold the writing to
-      them.
-    </p>
+    <h1>How I use evidence</h1>
     <hr class="page-head__rule" />
   </div>
-
   <div class="prose">
-    <StandardsBody />
+    <MethodsBody />
   </div>
 </Base>

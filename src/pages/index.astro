@@ -3,41 +3,8 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { SITE, href, formatDate } from '../lib/site';
 
-/*
- * SOURCE TRACE (Site build 3, back-propagation round, 2026-08-26)
- *
- * Identity lede: the ruled one-line identity, §4 Variant A, carrying the
- * 2026-08-26 amendment that strikes the evidence clause. Same ruling swept
- * the held-to phrasing out of the tailpiece below.
- *
- * Provenance line: NEW on this surface, implementing round 4 finding 2 and
- * round 7 finding 1 (the biography was buried), confirmed by both 2026-08-26
- * site cold reads ("why Josh?"). Every figure is the ruled round-6 wording:
- * SVP Engineering, direct org of about ninety, technology org of 200-plus,
- * eight years at Tableau. COINAGE FLAG: the arrangement is build-written.
- *
- * The question: `notes/piece-sequencing.md` ruling, §20 form, stated as the
- * dominant idea. The Standards paragraph this page used to carry is demoted
- * to a single pointer in the tailpiece, per the spine ruling (the method is
- * the warrant, never the topic) and both cold reads.
- *
- * Start here: the series pieces (any Notes series excluded), newest first. With one
- * piece published the section reads "Start here" rather than asking a new
- * visitor to understand the taxonomy; the piece's own description carries
- * the incident hook.
- *
- * Field Guide feature: description from the field-guide page's own lede and
- * dateline, per the shown-not-claimed posture (piece-sequencing: the
- * strongest such asset on hand).
- *
- * Voice: zero em-dashes.
- */
-
 const pieces = (
-  await getCollection(
-    'writing',
-    ({ data }) => !data.draft && data.series !== 'Notes',
-  )
+  await getCollection('writing', ({ data }) => !data.draft)
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latest = pieces.slice(0, 5);
 ---
@@ -45,35 +12,30 @@ const latest = pieces.slice(0, 5);
 <Base title={SITE.title} description={SITE.description} ogSlug="home">
   <div class="page-head page-head--display">
     <h1>{SITE.name}</h1>
-    <p class="lede">{SITE.description}</p>
+    <p class="lede">{SITE.focus}.</p>
     <p class="meta">
-      SVP Engineering at Comscore until August 2026: a direct org of about
-      ninety, and technical strategy and architecture across a technology org
-      of 200-plus. Eight years at Tableau before that.
+      Previously SVP Engineering at Comscore, with earlier roles at Tableau
+      and Micron.
     </p>
     <hr class="page-head__rule" />
   </div>
 
   <div class="prose">
     <p>
-      The work is a series on one question: when producing code gets cheaper
-      but judgment, validation, and coordination don't, what happens to the
-      engineering organization?
+      I've worked across engineering, product, program management, and
+      architecture. I'm interested in how the parts of a system fit together,
+      what we're trying to change, and which technical choices will actually
+      help. <a href={href('/about')}>More about my work</a>.
     </p>
   </div>
 
   {
     latest.length > 0 && (
       <>
-        <h2 class="section-head">
-          {latest.length === 1 ? 'Start here' : 'Latest'}
-        </h2>
+        <h2 class="section-head">Writing</h2>
         <ul class="entries">
           {latest.map((piece) => (
             <li class="entry">
-              {piece.data.series && (
-                <span class="eyebrow">{piece.data.series}</span>
-              )}
               <h3 class="entry__title">
                 <a href={href(`/writing/${piece.id}`)}>{piece.data.title}</a>
               </h3>
@@ -90,6 +52,21 @@ const latest = pieces.slice(0, 5);
     )
   }
 
+  <h2 class="section-head">Grow Youth Giving</h2>
+  <div class="prose">
+    <p>
+      I built Grow Youth Giving to help families and communities introduce
+      young people to giving. It shares a simple family grant-making program
+      and materials you can adapt to your own budget and circumstances.
+    </p>
+    <p>
+      I think learning about money should include understanding nonprofits,
+      choosing what to support, and explaining why. This is one way to make
+      that teaching part of family and community life.
+      <a href={href('/giving')}> Explore Grow Youth Giving</a>.
+    </p>
+  </div>
+
   <h2 class="section-head">Field Guide</h2>
   <div class="prose">
     <p>
@@ -102,8 +79,8 @@ const latest = pieces.slice(0, 5);
 
   <div class="tailpiece">
     <p>
-      <a href={href('/rss.xml')}>Subscribe by feed</a>. Read{' '}
-      <a href={href('/standards')}>the standards</a>.
+      <a href={href('/rss.xml')}>Writing feed</a>.
+      <a href={href('/standards')}> How I use evidence</a>.
     </p>
   </div>
 </Base>
