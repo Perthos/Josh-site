@@ -77,8 +77,15 @@ network. The same script writes the static cuts the social cards render from.
 
 ## Things worth knowing
 
-- **The footer's LinkedIn link is off until a profile URL is set.** Fill in
-  `LINKEDIN_URL` in `src/lib/site.ts` and it appears.
+- **Contact links live in `src/lib/site.ts`.** LinkedIn uses the profile URL
+  already linked from Grow Youth Giving. The optional email remains unset.
+- **Grow Youth Giving** has a standing page at `/giving/`, a homepage feature,
+  and links from About, navigation and footer. Its own site remains the home
+  for the program and teaching materials.
+- **The `/standards/` route is retained** for compatibility; the page and
+  navigation now call it Methods.
+- **Writing has no required series or cadence.** One standalone piece is a
+  complete state. The Field Guide remains its original July 2026 text.
 - **Social cards need the fonts in `assets/fonts/`.** They are read from the
   project root at build time and never served to a browser.
 - **`SITE_URL` and `BASE_PATH`** override the canonical origin and base path at

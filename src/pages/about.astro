@@ -1,96 +1,46 @@
 ---
 import Base from '../layouts/Base.astro';
-import { href, CONTACT_LINKS } from '../lib/site';
+import { SITE, href, CONTACT_LINKS } from '../lib/site';
 
-/*
- * SOURCE TRACE (reduction round, 2026-09-02)
- *
- * Body prose: `notes/career-narrative-draft.md` §2 at v6: the LinkedIn About
- * v9 form reduced on operator ruling after cold reads found this page "still
- * too long-winded". The skeptic-to-flip paragraph now lives once, at piece
- * 1's close; the unfinished-charge paragraph is cut. The thesis paragraph is
- * provisional pending the `sdlc-compression-thesis` run. Nothing on this
- * surface is signed. The change record is §10 of the career-narrative file.
- *
- * Consequences of the v9 form, all recorded in §10:
- *   - No layoff telling on this surface; "before my tenure ended" is the
- *     only departure signal, matching v9's no-status-disclosure posture.
- *   - The identity taxonomy lives in the page lede only and is not repeated
- *     in the body (§24 dependency: if the lede changes, revisit the opener).
- *   - SVP title and the about-ninety figure live on the Home provenance
- *     line, the site's equivalent of the Experience entries.
- *   - The field guide is framed by its own page and the Home feature, not
- *     here.
- *
- * Site-only additions: the Standards pointer sentence after the confession,
- * the Writing pointer in the close, and the contact sentence that renders
- * only once CONTACT_LINKS has entries.
- *
- * Voice: zero em-dashes.
- */
+// Comparison copy is paired with Research/notes/career-narrative-revised.md.
 ---
 
 <Base
   title="About"
-  description="Micron, Tableau, Comscore, and what this work is testing."
+  description="Architecture, technical strategy, engineering leadership, and Grow Youth Giving."
   ogSlug="about"
 >
   <div class="page-head">
     <h1>About</h1>
-    <p class="lede">
-      Engineering executive and practicing architect. I work out what changes
-      in a software organization when AI becomes part of the system.
-    </p>
+    <p class="lede">{SITE.focus}.</p>
     <hr class="page-head__rule" />
   </div>
 
   <div class="prose">
-    <p>
-      I've spent my career at the intersection of engineering organizations
-      and the systems they build: Micron, then Tableau, then Comscore, where
-      I ran enterprise architecture and technical strategy for a technology
-      org of 200-plus.
-    </p>
+    <p>I've worked across software engineering, product, program management, and architecture at Micron, Tableau, and Comscore. The questions I keep coming back to are how the parts of a system fit together, what we're trying to change, and which technical choices will actually help.</p>
 
-    <p>
-      AI is making implementation cheap. I think that moves engineering's
-      real constraints to choosing what to build, verifying what got built,
-      and owning the result. I'm spending the next six months, through
-      February 2027, testing that against real cases in public.
-    </p>
+<p>At Comscore I led enterprise architecture and technical strategy across a technology organization of 200-plus, alongside engineering management responsibilities that culminated in the SVP Engineering role. My work included setting the software development lifecycle and operating cadence, and leading a group of cross-functional architects.</p>
 
-    <p>
-      The research process I built has one job: break my conclusions. The
-      first thing it caught was me. I had commissioned my own conclusion.
-      What it produces and where the models sit are on{' '}
-      <a href={href('/standards')}>Standards</a>.
-    </p>
+<p>The work I'm most interested in is architecture and technical strategy: understanding the constraints, weighing the alternatives, and setting direction that teams can use. My engineering leadership experience gives me a view of what those decisions ask of the people who have to carry them out.</p>
 
-    <p>
-      I publish the evidence, the gaps, and, when a decision has to be made
-      anyway, the call I'd make. The pieces are on{' '}
-      <a href={href('/writing')}>Writing</a>.
-    </p>
+<p>I write about systems and engineering judgment, including what changes when AI becomes part of the work. The <a href={href('/field-guide')}>Field Guide</a> collects the reasoning I wrote down for the architects I led. <a href={href('/writing/model-output-is-not-telemetry')}>Model output is not telemetry</a> looks at the evidence we need before letting an agent's account of a system determine what happens next.</p>
 
-    <p>
-      If you've watched AI change how your teams deliver, or fail to, I want
-      the specifics: what moved, what broke, and what refused to get cheaper.
-      {
-        CONTACT_LINKS.length > 0 && (
-          <>
-            {' '}The fastest way to reach me is{' '}
-            {CONTACT_LINKS.map((link, i) => (
-              <>
-                {i > 0 && ' or '}
-                <a href={link.href} rel="me noopener">
-                  {link.label}
-                </a>
-              </>
-            ))}
-            .
-          </>
-        )
-      }
-    </p>
+<p>I also built <a href={href('/giving')}>Grow Youth Giving</a> to help families and communities introduce young people to giving. I think learning about money should include understanding nonprofits, choosing what to support, and explaining why. The site shares a simple family grant-making program and materials others can adapt. I want people to see that they can start small and make this teaching part of their own lives.</p>
+
+<p>My role at Comscore ended in August 2026, and I'm taking some time off before my next role.</p>
+
+    {
+      CONTACT_LINKS.length > 0 && (
+        <p>
+          You can find me on{' '}
+          {CONTACT_LINKS.map((link, i) => (
+            <>
+              {i > 0 && ' or '}
+              <a href={link.href} rel="me noopener">{link.label}</a>
+            </>
+          ))}.
+        </p>
+      )
+    }
   </div>
 </Base>

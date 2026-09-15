@@ -19,11 +19,10 @@ const canonical = new URL(
   Astro.site,
 );
 const ogImage = new URL(href(`/og/${ogSlug}.png`), Astro.site);
-// The home tab title carries the identity line's first clause so a cold
-// arrival (search result, shared link) gets a descriptor, not a bare name.
+// Keep the home title aligned with the visible professional focus.
 const pageTitle =
   title === SITE.title
-    ? `${SITE.name} — engineering executive and practicing architect`
+    ? `${SITE.name} — ${SITE.focus}`
     : `${title} — ${SITE.name}`;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
